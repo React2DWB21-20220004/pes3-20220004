@@ -5,6 +5,22 @@ const Form = (props) => {
   const marginBottom = {
     marginBottom: "30px",
   };
+  const [correo, setCorreo] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const handleContraseña = (e) => {
+    setPassword(e.target.value);
+  };
+  const handleCorreo = (e) => {
+    setCorreo(e.target.value);
+  };
+  const handleIngresar = () => {
+    if (correo.length > 0 && password.length > 0) {
+      alert("Datos ingresados, revise la consola");
+      console.log("Correo: " + correo + "\nContraseña: " + password);
+    } else {
+      alert("Complete todos los campos");
+    }
+  };
   return (
     <div
       style={{
@@ -34,14 +50,20 @@ const Form = (props) => {
           required
           id="outlined-required"
           label="Correo"
+          onChange={handleCorreo}
         />
         <TextField
           required
           id="outlined-required"
           label="Contraseña"
           type="password"
+          onChange={handleContraseña}
         />
-        <Button variant="contained" style={{ margin: " auto" }}>
+        <Button
+          onClick={handleIngresar}
+          variant="contained"
+          style={{ margin: " auto" }}
+        >
           Ingresar
         </Button>
       </Paper>
